@@ -1,0 +1,22 @@
+grammar = {
+    "S":["NP VP"],
+    "NP": ["Det N"],
+    "VP":["V"],
+    "Det": ["the"],
+    "N_singular":["boy","girl","studemt"],
+    "N_plural":["boys","girls","students"],
+    "V_singular":["runs","plays","eats"],
+    "V_plural":["run","play","eat"]
+}
+def check_argument(sentence):
+  words=sentence.lower().split()
+  if len(words)!=3:
+     return "sentence should have 3 words"
+  Determiner,Noun,verb=words
+  if Noun in grammar["N_singular"] and verb in grammar["V_singular"]:
+     return "valid sentence"
+  if Noun in grammar["N_plural"] and verb in grammar["V_plural"]:
+     return "valid sentence"
+print(check_argument("the boy runs"))
+print(check_argument("the boys runs"))
+print(check_argument("the boys run"))
