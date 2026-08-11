@@ -1,0 +1,20 @@
+from collections import defaultdict
+training_data = [
+    [("the", "DT"), ("boy", "NN"), ("runs", "VB")],
+    [("the", "DT"), ("girl", "NN"), ("plays", "VB")],
+    [("a", "DT"), ("boy", "NN"), ("plays", "VB")]
+]
+word_tag_count = defaultdict(lambda: defaultdict(int))
+tag_count = defaultdict(int)
+for sentence in training_data:
+    for word, tag in sentence:
+        word_tag_count[word][tag] += 1
+        tag_count[tag] += 1
+sentence = "the boy plays".split()
+for word in sentence:
+    if word in word_tag_count:
+        tag = max(word_tag_count[word],
+                  key=word_tag_count[word].get)
+    else:
+        tag = "NN"
+    print(word, "->", tag)
