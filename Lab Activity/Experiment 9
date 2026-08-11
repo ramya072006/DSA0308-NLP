@@ -1,0 +1,22 @@
+import re
+def pos_tag(word):
+    if re.match(r'^(the|a|an)$', word):
+        return "DT"
+    elif re.match(r'.*(ing)$', word):
+        return "VBG"
+    elif re.match(r'.*(ed)$', word):
+        return "VBD"
+    elif re.match(r'^[0-9]+$', word):
+        return "CD"
+    elif re.match(r'.*(ly)$', word):
+        return "RB"
+    elif re.match(r'.*(s)$', word):
+        return "NNS"
+    else:
+        return "NN"
+sentence = "The boy is running quickly"
+words = sentence.lower().split()
+print("Word\t\tPOS")
+print("-" * 20)
+for word in words:
+    print(f"{word:12}{pos_tag(word)}")
