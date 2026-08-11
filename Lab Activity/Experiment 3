@@ -1,0 +1,13 @@
+import nltk
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+nltk.download('wordnet')
+words = ["playing", "played", "studies", "studying", "running"]
+stemmer = PorterStemmer()
+lemmatizer = WordNetLemmatizer()
+for word in words:
+    stem = stemmer.stem(word)
+    lemma = lemmatizer.lemmatize(word, pos="v")
+    print("Word:", word)
+    print("Stem:", stem)
+    print("Lemma:", lemma)
+    print()
