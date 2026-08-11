@@ -1,0 +1,21 @@
+import random
+text = "I love natural language processing and I love machine learning"
+words = text.lower().split()
+bigrams = {}
+for i in range(len(words) - 1):
+    word = words[i]
+    next_word = words[i + 1]
+
+    if word not in bigrams:
+        bigrams[word] = []
+    bigrams[word].append(next_word)
+word = words[0]
+generated = [word]
+for i in range(10):
+    if word in bigrams:
+        word = random.choice(bigrams[word])
+        generated.append(word)
+    else:
+        break
+print("Generated Text:")
+print(" ".join(generated))
