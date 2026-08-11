@@ -1,0 +1,19 @@
+def transformation_tagging(sentence):
+    words = sentence.lower().split()
+    tags = ["NN"] * len(words)
+    for i, word in enumerate(words):
+        if word in ["the", "a", "an"]:
+            tags[i] = "DT"
+        elif word.endswith("ing"):
+            tags[i] = "VBG"
+        elif word.endswith("ed"):
+            tags[i] = "VBD"
+        elif word.endswith("ly"):
+            tags[i] = "RB"
+    return list(zip(words, tags))
+sentence = "The boy is running quickly"
+result = transformation_tagging(sentence)
+print("Word\t\tPOS")
+print("-" * 20)
+for word, tag in result:
+    print(f"{word:12}{tag}")
